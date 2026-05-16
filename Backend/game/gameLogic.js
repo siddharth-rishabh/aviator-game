@@ -20,11 +20,20 @@ function gameStart(){
     startWaiting();
 }
 
-function startWaiting(){
+function startWaiting() {
+
     game.status = "waiting";
-    setTimeout(()=>{
+
+    game.multiplier = 1.00;
+
+    game.crashPoint = 0;
+
+    console.log("Waiting for next round...");
+
+    setTimeout(() => {
         start();
-    },5000)
+    }, 5000);
+
 }
 
 async function start(){
@@ -34,15 +43,18 @@ const roundId =
 
 currentRoundId = roundId;
 
+game.status = "start";
+
+game.multiplier = 1.00;
+
+const crashPoint = generateCrashPoint();
+
+game.crashPoint = crashPoint;
+
 await Round.create({
     roundId,
-    crashPoint: game.crashPoint
+    crashPoint
 });
-
-    game.status="start";
-    game.multiplier = 1.00;
-    const crashPoint= generateCrashPoint();
-    game.crashPoint= crashPoint;
     console.log("crash Point:", crashPoint);
     
     const repeat = setInterval(()=>{
@@ -123,6 +135,8 @@ function generateCrashPoint() {
     );
 
 }
-gameStart();
+setTimeout(()=>{
+    gameStart();
+},8000);
 
 export {game, players, history};
