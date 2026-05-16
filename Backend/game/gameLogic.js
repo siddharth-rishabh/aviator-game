@@ -27,7 +27,7 @@ function startWaiting(){
     },5000)
 }
 
-function start(){
+async function start(){
    
 const roundId =
     crypto.randomUUID();
