@@ -127,7 +127,7 @@ export default function Game() {
   const [history, setHistory] = useState([]);
   const [betAmount, setBetAmount] = useState(100);
  const [socket] = useState(() =>
-  io("http://http://15.134.234.250:5000", {
+  io("http://15.134.234.250:5000", {
     auth: { token: localStorage.getItem("token") },
   })
 );
@@ -146,7 +146,7 @@ export default function Game() {
     setWallet(data.player);
   });
 
-  fetch("http://http://15.134.234.250:5000/history")
+  fetch("http://15.134.234.250:5000/history")
     .then((r) => r.json())
     .then(setHistory);
 
